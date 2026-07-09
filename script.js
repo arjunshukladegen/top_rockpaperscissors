@@ -1,3 +1,30 @@
+
+// Randomly picks rock, paper, or scissors
+function getComputerChoice() {
+  return;
+}
+
+// Prompts user for them to type rock, paper, or scissors
+function getHumanChoice() {
+  return;
+}
+
+// Track scores for game
+let humanScore = 0;
+let computerScore = 0;
+
+// Get human and computer choices and calculates winner
+function playRound() {
+  return;
+}
+
+// Plays a 5 round game
+function playGame() {
+  return;
+}
+
+
+
 /*
 getComputerChoice FUNC
   return rock paper or scissors at random
