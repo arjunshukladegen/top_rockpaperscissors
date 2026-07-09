@@ -1,8 +1,21 @@
 
 // Randomly picks rock, paper, or scissors
 function getComputerChoice() {
-  return;
+  // Picks a random number (1, 2, 3)
+  let randomNum = (Math.round((Math.random() * 100)));
+  let randomPick = (randomNum % 3) + 1;
+  if (randomPick === 1) {
+    return "Rock";
+  }
+  else if (randomPick === 2) {
+    return "Paper";
+  }
+  else if (randomPick === 3) {
+    return "Scissors";
+  }
 }
+
+console.log(getComputerChoice());
 
 // Prompts user for them to type rock, paper, or scissors
 function getHumanChoice() {
