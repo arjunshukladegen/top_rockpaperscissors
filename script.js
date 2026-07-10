@@ -107,5 +107,18 @@ function playGame() {
     console.log(`Round ${i+1} has Ended!`)
     console.log(`Computer: ${computerScore} | Human ${humanScore}`)
   }
-  return;
+  let whoWon;
+  if (computerScore > humanScore) {
+    whoWon = "The Computer"
+  }
+  else if (humanScore > computerScore) {
+    whoWon = "The Human"
+  }
+  else {
+    whoWon = "No one"
+  }
+  return whoWon;
 }
+
+let gameWinner = playGame()
+console.log(`Game has Ended!!! ${gameWinner} has won the game!`)
