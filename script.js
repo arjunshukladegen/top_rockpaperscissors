@@ -5,55 +5,107 @@ function getComputerChoice() {
   let randomNum = (Math.round((Math.random() * 100)));
   let randomPick = (randomNum % 3) + 1;
   if (randomPick === 1) {
-    return "Rock";
+    return "rock";
   }
   else if (randomPick === 2) {
-    return "Paper";
+    return "paper";
   }
   else if (randomPick === 3) {
-    return "Scissors";
+    return "scissors";
   }
 }
+//console.log(`Computer picked: ${getComputerChoice()}`);
 
-console.log(getComputerChoice());
 
 // Prompts user for them to type rock, paper, or scissors
 function getHumanChoice() {
-  return;
+  let playerPick = prompt("Pick 'Rock', 'Paper', or 'Scissors'!");
+  return playerPick;
 }
+//console.log(`You picked: ${getHumanChoice()}`);
 
-// Track scores for game
-let humanScore = 0;
-let computerScore = 0;
 
-// Get human and computer choices and calculates winner
-function playRound() {
-  return;
-}
+
+
+
+
+
+
 
 // Plays a 5 round game
 function playGame() {
+  // Track scores for game
+  let humanScore = 0;
+  let computerScore = 0;
+  let roundWinner;
+
+  // Get human and computer choices and calculates winner
+  function playRound(humanChoice, computerChoice) {
+    console.log(`You have picked: ${humanChoice}`);
+    console.log(`Computer has picked: ${computerChoice}`);
+
+    let winnerName;
+
+    // Calculate who the winner is
+
+    // If they picked the same (tie)
+    if (humanChoice === computerChoice) {
+      winnerName = "Tie";
+    }
+
+    // If human picked Rock
+    else if (humanChoice === "rock") {
+      if (computerChoice === "paper") {
+        winnerName = "Computer";
+      } 
+      else {
+        winnerName = "Human"
+      }
+    }
+
+    // If human picked Paper
+    else if (humanChoice === "paper") {
+      if (computerChoice === "scissors") {
+        winnerName = "Computer";
+      } 
+      else {
+        winnerName = "Human"
+      }
+    }
+
+    // If human picked Scissors
+    else if (humanChoice === "scissors") {
+      if (computerChoice === "rock") {
+        winnerName = "Computer";
+      } 
+      else {
+        winnerName = "Human"
+      }
+    }
+    if (winnerName === "Tie") {
+      console.log("This round is a Tie!");
+    }
+    else {
+      console.log(`${winnerName} has won this round!`);
+    }
+    return winnerName;
+  }
+
+  for (let i = 0; i < 5; i++) {
+    console.log(`Round ${i+1} has Started!`);
+    let humanSelection = getHumanChoice().toLowerCase();
+    let computerSelection = getComputerChoice();
+
+    roundWinner = playRound(humanSelection, computerSelection);
+    if (roundWinner === 'Computer') {
+      computerScore = computerScore + 1;
+    }
+    else if (roundWinner === 'Human') {
+      humanScore = humanScore + 1;
+    }
+
+    console.log(`Round ${i+1} has Ended!`)
+    console.log(`Computer: ${computerScore} | Human ${humanScore}`)
+  }
   return;
 }
-
-
-
-/*
-getComputerChoice FUNC
-  return rock paper or scissors at random
-
-getHumanChoice FUNC
-  prompt user for choice
-
-let humanScore track score
-let computerScore track score
-
-playRound FUNC (humanChoice and computerChoice)
-  make human choice not case sensitive
-  console log a round winner such as "You lose! Paper beats Rock"
-  increment score based on winner 
-
-playGame FUNC
-  calls playRound to play 5 rounds
-
-*/
