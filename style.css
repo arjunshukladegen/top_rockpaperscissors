@@ -91,7 +91,7 @@ body {
   width: 100%;
   height: auto;
   border-radius: 1px;
-  border-color:red;
+  border-color:#444;
   border-style: solid;
 }
 
@@ -115,12 +115,12 @@ body {
   border-radius: 1px;
   border-color: black;
   border-style: solid;
-  width: 90%;
+  width: 95%;
 }
 
 .game-button {
   margin: 1rem;
-  color:darkslategrey;
+  color: #333333;
   background-color:aquamarine;
   font-size: 16px;
   padding: 0.5rem;
@@ -134,3 +134,4 @@ button:active {
   transform: scale(0.95);
   background-color: #333333;
 }
+
