@@ -121,18 +121,23 @@ function getComputerChoice() {
 // DOM Manipulation
 
 
-
+let humanScore = 0;
+let computerScore = 0;
+let humanPick = null;
+let computerPick = null;
+let roundWinner = null;
 
 
 function startGame() {
 
-  // VARIABLE DECLARATION
-
+  // RESET VARIABLES TO DEFAULTS
+  //  humanPick stays the same
   let humanScore = 0;
   let computerScore = 0;
-  let humanPick;
-  let computerPick;
-  let roundWinner;
+  let computerPick = null;
+  let roundWinner = null;
+  let lockedStatus = false;
+
 
   // DOM SELECTORS
 
@@ -142,35 +147,45 @@ function startGame() {
 
   // IMAGE FOR THE COMPUTER'S CURRENT PICK
   const computerPickImage = document.querySelector("#computer-pick-image");
-  computerPickImage.src = 'img/eye.png';
+  
 
   // BOTTOM MIDDLE UI SCORE TEXT
   const middleScore = document.querySelector("#middle-score");
-  middleScore.textContent = `Tie`;
+  
 
   // HUMAN SCORE TRACKER
   const humanScoreText = document.querySelector('#human-score');
-  humanScoreText.textContent = `Score: ${humanScore}`;
+  
   // COMPUTER SCORE TRACKER
   const computerScoreText = document.querySelector('#computer-score');
-  computerScoreText.textContent = `Score: ${computerScore}`;
 
-
-
-
-  // CODE GOES UNDER HERE
+  const waitingMessage = document.querySelector('#waiting-message');
   
+  const humanThink = document.querySelector('#human-think');
+  const computerThink = document.querySelector('#computer-think');
+
+  mainButton.addEventListener('click', function (e) {
+    humanPickImage.style.borderColor = "#00FF00";
+    mainButton.style.backgroundColor = "#00FF00";
+    humanThink.textContent = 'Locked in.';
+  })
+
+  for (let i = 0; i < 5; i++) {
+    middleScore.textContent = `Round 0`;
+    humanScoreText.textContent = `Score: ${humanScore}`;
+    computerScoreText.textContent = `Score: ${computerScore}`;
+    computerPickImage.src = 'img/eye.png';
+    waitingMessage.textContent = 'Battle!';
+    mainButton.textContent = 'Lock In';
+    humanPickImage.style.borderColor = "#FF0000";
+    mainButton.style.backgroundColor = "#FFFF00";
+    humanThink.textContent = 'Thinking...';
+
+
+  }
+
+
 }
-
-
-// FILE STARTS HERE
-// ----------------------------------------------------------
-
-let humanScore = 0;
-let computerScore = 0;
-let humanPick;
-let computerPick;
-let roundWinner;
 
 // DOM SELECTORS
 
@@ -186,7 +201,7 @@ computerPickImage.src = 'img/eye.png';
 
 // BOTTOM MIDDLE UI SCORE TEXT
 const middleScore = document.querySelector("#middle-score");
-middleScore.textContent = `Round 0`;
+middleScore.textContent = 'Round 0';
 
 // HUMAN SCORE TRACKER
 const humanScoreText = document.querySelector('#human-score');
@@ -197,21 +212,27 @@ computerScoreText.textContent = `Score: ${computerScore}`;
 
 
 
-
-
-
 function humanChoice(choice) {
   if (choice === 'rock') {
     humanPickImage.src = 'img/rock.png';
     humanPickImage.style.borderColor = "#FFFF00";
+    humanPick = 'rock';
+    //
+    mainButton.style.backgroundColor = "#FFFF00";
   }
   else if (choice === 'paper') {
     humanPickImage.src = 'img/paper.png';
     humanPickImage.style.borderColor = "#FFFF00";
+    humanPick = 'paper';
+    //
+    mainButton.style.backgroundColor = "#FFFF00";
   }
   else if (choice === 'scissors') {
     humanPickImage.src = 'img/scissors.png';
     humanPickImage.style.borderColor = "#FFFF00";
+    humanPick = 'scissors';
+    //
+    mainButton.style.backgroundColor = "#FFFF00";
   }
   else {
     console.log("Error: Something went wrong, please restart.");
@@ -247,14 +268,6 @@ mainButton.addEventListener('click', function (e) {
   console.log("admin: main button has been clicked");
   if (gameStarted === false) {
     gameStarted = true;
-    mainButton.style.backgroundColor = "#FFFF00";
-    humanPickImage.style.borderColor = "#FF0000";
-    mainButton.textContent = 'Lock In';
     startGame();
   }
-  else {
-
-  }
-
-  
 })
