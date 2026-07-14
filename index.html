@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBeDessETbxPA5-qlaxJsGVLa4oK96SnsbZH1jImbXmUlEh9WI-TOM0g&s=10">
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <title>Rock Paper Scissors</title>
 </head>
 <body>
-  <h1 style="text-align: center">Rock Paper Scissors</h1>
+  <div id="header">
+    <h1>Rock Paper Scissors</h1>
+  </div>
+  
+  <div id="container">
+    <div id="buttons">
+      <button class="game-button" id="start-game">Start Game</button>
+      <button class="game-button" id="rock-button">Rock</button>
+      <button class="game-button" id="paper-button">Paper</button>
+      <button class="game-button" id="scissors-button">Scissors</button>
+    </div>
+    
+    <div id="game-state">
+
+      <div id="left-game">
+        <p>Human</p>
+        <div class="profile-image">
+          <img src="img/human.jpg">
+        </div>
+        
+        <p>Score: 0</p>
+      </div>
+
+      <div id="human-pick">
+        <p>Picking...</p>
+        <div class="pick-image">
+          <img src="img/rock.png">
+        </div>
+      </div>
+
+      <div id="middle-game">
+        <p>[Score] to [Score]</p>
+      </div>
+
+      <div id="computer-pick">
+        <p>Picking...</p>
+        <div class="pick-image">
+          <img src="img/paper.png">
+        </div>
+      </div>
+
+      <div id="right-game">
+        <p>Computer</p>
+        <div class="profile-image">
+          <img src="img/computer.jpg">
+        </div>
+        <p>Score: 0</p>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>

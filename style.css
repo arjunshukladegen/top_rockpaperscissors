@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#header {
+  text-align: center;
+  width: 80%;
+  margin: 4px auto;
+  padding: 8px;
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+#container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 95%;
+  margin: 4px auto;
+  padding: 8px;
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+#game-state {
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#left-game {
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+#middle-game {
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+#right-game {
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+#computer-pick {
+  width: 20%;
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+}
+
+#human-pick {
+  width: 20%;
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-image {
+  padding: 1rem;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+  border-color:red;
+  border-style: solid;
+}
+
+.pick-image {
+  padding: 1rem;
+}
+
+.pick-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+  border-color:red;
+  border-style: solid;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+  margin-top: 0.5rem;
+  border-radius: 1px;
+  border-color: black;
+  border-style: solid;
+  width: 90%;
+}
+
+.game-button {
+  margin: 1rem;
+  color:darkslategrey;
+  background-color:aquamarine;
+  font-size: 16px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 20%;
+}
+
+button:active {
+  transform: scale(0.95);
+  background-color: #333333;
+}

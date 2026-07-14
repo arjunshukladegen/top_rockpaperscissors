@@ -117,8 +117,15 @@ function playGame() {
   else {
     whoWon = "No one"
   }
-  return whoWon;
+  return `Game has Ended!!! ${whoWon} has won the game!`;
 }
 
-let gameWinner = playGame()
-console.log(`Game has Ended!!! ${gameWinner} has won the game!`)
+// playGame() - Starts 5 round game
+// DOM Manipulation
+const button = document.querySelector('#start-game');
+
+button.addEventListener('click', function (e) {
+  console.log("Hi");
+})
+
+
