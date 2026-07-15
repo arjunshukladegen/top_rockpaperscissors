@@ -1,4 +1,5 @@
 
+
 // Randomly picks rock, paper, or scissors
 function getComputerChoice() {
   // Picks a random number (1, 2, 3)
@@ -126,7 +127,96 @@ let computerScore = 0;
 let humanPick = null;
 let computerPick = null;
 let roundWinner = null;
+let roundNumber = 0;
 
+
+
+//function playRound(humanChoice, computerChoice) {
+//     console.log(`You have picked: ${humanChoice}`);
+//     console.log(`Computer has picked: ${computerChoice}`);
+
+//     let winnerName;
+
+//     // Calculate who the winner is
+
+//     // If they picked the same (tie)
+//     if (humanChoice === computerChoice) {
+//       winnerName = "Tie";
+//     }
+
+//     // If human picked Rock
+//     else if (humanChoice === "rock") {
+//       if (computerChoice === "paper") {
+//         winnerName = "Computer";
+//       } 
+//       else {
+//         winnerName = "Human"
+//       }
+//     }
+
+//     // If human picked Paper
+//     else if (humanChoice === "paper") {
+//       if (computerChoice === "scissors") {
+//         winnerName = "Computer";
+//       } 
+//       else {
+//         winnerName = "Human"
+//       }
+//     }
+
+//     // If human picked Scissors
+//     else if (humanChoice === "scissors") {
+//       if (computerChoice === "rock") {
+//         winnerName = "Computer";
+//       } 
+//       else {
+//         winnerName = "Human"
+//       }
+//     }
+//     if (winnerName === "Tie") {
+//       console.log("This round is a Tie!");
+//     }
+//     else {
+//       console.log(`${winnerName} has won this round!`);
+//     }
+//     return winnerName;
+//   }
+
+function playRound(humanChoice, computerChoice) {
+  let winnerName = null;
+
+  if (humanChoice === computerChoice) {
+    winnerName = "Tie";
+    return winnerName;
+  }
+
+  else if (humanChoice === 'rock') {
+    if (computerChoice === 'paper') {
+      winnerName = "computer";
+    }
+    else {
+      winnerName = "human";
+    }
+  }
+
+  else if (humanChoice === 'paper') {
+    if (computerChoice === 'scissors') {
+      winnerName = "computer";
+    }
+    else {
+      winnerName = "human";
+    }
+  }
+  else if (humanChoice === 'scissors') {
+    if (computerChoice === 'rock') {
+      winnerName = "computer";
+    }
+    else {
+      winnerName = "human";
+    }
+  }
+  return winnerName;
+}
 
 function startGame() {
 
@@ -137,6 +227,7 @@ function startGame() {
   let computerPick = null;
   let roundWinner = null;
   let lockedStatus = false;
+  let roundNumber = 0;
 
 
   // DOM SELECTORS
@@ -165,13 +256,23 @@ function startGame() {
   const computerThink = document.querySelector('#computer-think');
 
   mainButton.addEventListener('click', function (e) {
-    humanPickImage.style.borderColor = "#00FF00";
-    mainButton.style.backgroundColor = "#00FF00";
-    humanThink.textContent = 'Locked in.';
-  })
+      if (humanPick !== null) {
+        humanPickImage.style.borderColor = "#00FF00";
+        mainButton.style.backgroundColor = "#00FF00";
+        humanThink.textContent = 'Locked in.';
+        console.log(humanPick);
+        computerPick = getComputerChoice();
+        console.log(computerPick);
+        let winner = playRound(humanPick, computerPick);
+        console.log(winner);
+        
+      }
+    })
 
   for (let i = 0; i < 5; i++) {
-    middleScore.textContent = `Round 0`;
+    
+
+    middleScore.textContent = `Round ${roundNumber}`;
     humanScoreText.textContent = `Score: ${humanScore}`;
     computerScoreText.textContent = `Score: ${computerScore}`;
     computerPickImage.src = 'img/eye.png';
@@ -180,8 +281,8 @@ function startGame() {
     humanPickImage.style.borderColor = "#FF0000";
     mainButton.style.backgroundColor = "#FFFF00";
     humanThink.textContent = 'Thinking...';
-
-
+    roundNumber = 1;
+    
   }
 
 
@@ -217,22 +318,29 @@ function humanChoice(choice) {
     humanPickImage.src = 'img/rock.png';
     humanPickImage.style.borderColor = "#FFFF00";
     humanPick = 'rock';
-    //
-    mainButton.style.backgroundColor = "#FFFF00";
+    
+    if (gameStarted === true) {
+      mainButton.style.backgroundColor = "#FFFF00";
+    }
+    
   }
   else if (choice === 'paper') {
     humanPickImage.src = 'img/paper.png';
     humanPickImage.style.borderColor = "#FFFF00";
     humanPick = 'paper';
-    //
-    mainButton.style.backgroundColor = "#FFFF00";
+
+    if (gameStarted === true) {
+      mainButton.style.backgroundColor = "#FFFF00";
+    }
   }
   else if (choice === 'scissors') {
     humanPickImage.src = 'img/scissors.png';
     humanPickImage.style.borderColor = "#FFFF00";
     humanPick = 'scissors';
-    //
-    mainButton.style.backgroundColor = "#FFFF00";
+    
+    if (gameStarted === true) {
+      mainButton.style.backgroundColor = "#FFFF00";
+    }
   }
   else {
     console.log("Error: Something went wrong, please restart.");
