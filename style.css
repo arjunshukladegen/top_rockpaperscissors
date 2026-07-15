@@ -102,9 +102,11 @@ body {
 .pick-image img {
   width: 100%;
   height: auto;
-  border-radius: 1px;
-  border-color:red;
-  border-style: solid;
+  /* border-radius: 1px;
+  border-color:blue;
+  border-style: solid; */
+  border-bottom: 4px solid transparent;
+
 }
 
 #buttons {

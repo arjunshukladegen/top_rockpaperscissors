@@ -1,8 +1,9 @@
 const colors = {
-  blank: '',
+  blank: 'transparent',
   red: '#FF0000',
   yellow: '#FFF000',
   green: '#00FF00',
+  blue: '#000FFF',
 }
 
 const state = {
@@ -79,28 +80,34 @@ function render() {
   if (state.playerSelection === null) {
     ui.playerPickImg.src = 'img/eye.png';
     state.playerSelectionText = 'Nothing';
-    ui.playerPickImg.style.borderColor = colors.red;
+    if (state.gameStarted === false) {
+      ui.playerPickImg.style.borderBottomColor = colors.blank;
+    }
+    else {
+      ui.playerPickImg.style.borderBottomColor = colors.yellow;
+    }
   }
   else {
     ui.playerPickImg.src = 'img/' + state.playerSelection + '.png';
     if (state.playerLocked === true) {
-      ui.playerPickImg.style.borderColor = colors.green;
+      ui.playerPickImg.style.borderBottomColor = colors.green;
     }
     else {
-      ui.playerPickImg.style.borderColor = colors.yellow;
+      ui.playerPickImg.style.borderBottomColor = colors.blue;
     }
   }
   ui.playerPick.textContent = state.playerSelectionText;
-
-  if (gameStarted === false) {
-    ui.playerPickImg.style.borderColor = colors.blank;
-  }
   
 
   if (state.cpuSelection === null) {
     ui.cpuPickImg.src = 'img/eye.png';
     state.cpuSelectionText = 'Hidden';
-    ui.cpuPickImg.style.borderColor = colors.yellow;
+    if (state.gameStarted === false) {
+      ui.cpuPickImg.style.borderColor = colors.blank;
+    }
+    else {
+      ui.cpuPickImg.style.borderColor = colors.blue;
+    }
   }
   else {
     ui.cpuPickImg.src = `img/${state.cpuSelection}.png`;
@@ -109,12 +116,60 @@ function render() {
   ui.cpuPick.textContent = state.cpuSelectionText;
 };
 
-// function get user input
 
 // function get cpu input
 
-// play round
+// Randomly picks rock, paper, or scissors
+function getComputerChoice() {
+  // Picks a random number (1, 2, 3)
+  let randomNum = (Math.round((Math.random() * 100)));
+  let randomPick = (randomNum % 3) + 1;
+  if (randomPick === 1) {
+    return "rock";
+  }
+  else if (randomPick === 2) {
+    return "paper";
+  }
+  else if (randomPick === 3) {
+    return "scissors";
+  }
+}
 
+// play round
+function playRound(playerMove, cpuMove) {
+  let winnerName = null;
+
+  if (playerMove === cpuMove) winnerName = 'tie';
+  
+  else if (playerMove === 'rock') {
+    if (cpuMove === 'scissors') {
+      winnerName = 'player';
+    }
+    else if (cpuuMove === 'paper') {
+      winnerName = 'cpu';
+    }
+  }
+
+  else if (playerMove === 'paper') {
+    if (cpuMove === 'rock') {
+      winnerName = 'player';
+    }
+    else if (cpuMove === 'scissors') {
+      winnerName = 'cpu';
+    }
+  }
+
+  else if (playerMove === 'scissors') {
+    if (cpuMove === 'rock') {
+      winnerName = 'cpu';
+    }
+    else if (cpuMove === 'paper') {
+      winnerName = 'player';
+    }
+  }
+
+  return winnerName;
+}
 // play game
 
 
@@ -124,6 +179,8 @@ buttons.main.addEventListener('click', function (e) {
   if (state.mainButtonName === 'Start Game') {
     state.gameStarted = true;
     state.round = 1;
+    state.cpuScore = 0;
+    state.playerScore = 0;
     state.playerSelection = null;
     state.playerLocked = false;
     state.mainButtonName = 'Lock In';
@@ -132,7 +189,37 @@ buttons.main.addEventListener('click', function (e) {
   }
 
   else if (state.mainButtonName === 'Lock In') {
-
+    if (playerPick === 'null') {
+      state.topStatus = 'Pick a move!';
+      render();
+    }
+    else {
+      state.cpuSelection = getComputerChoice();
+      state.roundWinner = playRound(state.playerSelection, state.cpuSelection);
+      
+      if (roundWinner === 'player') {
+        state.playerScore = state.playerScore + 1;
+        state.topStatus = `${state.playerName} has won!`;
+        state.playerStatus = 'Won the round!';
+        state.cpuStatus = 'Lost the round!';
+      }
+      else if (roundWinner === 'cpu') {
+        state.cpuScore = state.cpuScore + 1;
+        state.topStatus = `${state.cpuName} has won!`;
+        state.playerStatus = 'Lost the round!';
+        state.cpuStatus = 'Won the round!';
+      }
+      else {
+        state.topStatus = 'Round is a tie!';
+        state.playerStatus = 'Tied round!';
+        state.cpuStatus = 'Tied round!';
+      }
+      //figure out who won function//
+      if (state.cpuSelection === 'rock') state.cpuSelectionText = 'Rock';
+      if (state.cpuSelection === 'paper') state.cpuSelectionText = 'Paper';
+      if (state.cpuSelection === 'scissors') state.cpuSelectionText = 'Scissors';
+      render();
+    }
   }
 
   else if (state.mainButtonName === 'Next Round') {
@@ -160,3 +247,5 @@ buttons.scissors.addEventListener('click', function (e) {
 
 
 render();
+console.log(ui.cpuPickImg.style.borderColor);
+console.log(ui.playerPickImg.style.borderColor);
