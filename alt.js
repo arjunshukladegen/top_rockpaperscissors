@@ -11,5 +11,15 @@ const state = {
 }
 
 const ui = {
-  
+  uiPlayerName: ,
+  uiCpuName: ,
+  uiPlayerScore: ,
+  uiCpuScore: ,
+  uiPlayerPick: ,
+  uiCpuPick: ,
+  uiRound: ,
+  uiTopStatus: ,
+  uiPlayerStatus: ,
+  uiCpuStatus: ,
+  ui 
 }
