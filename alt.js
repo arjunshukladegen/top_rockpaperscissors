@@ -3,7 +3,9 @@ const colors = {
   red: '#FF0000',
   yellow: '#FFF000',
   green: '#00FF00',
-  blue: '#87CEEB'
+  blue: '#87CEEB',
+  darkPink: '#E0186C',
+  lightPink: '#F04D96',
 }
 
 const state = {
@@ -37,6 +39,8 @@ const ui = {
   cpuStatus: document.querySelector('#computer-think'),
   playerPickImg: document.querySelector('#user-pick-image'),
   cpuPickImg: document.querySelector('#computer-pick-image'),
+  middleImg: document.querySelector('#middle-image'),
+  extraSettings: document.querySelector('#extra-settings'),
 };
 
 const buttons = {
@@ -46,26 +50,74 @@ const buttons = {
   scissors: document.querySelector('#scissors-button'),
 };
 
+
+let showSettings = false;
+ui.extraSettings.style.visibility = 'hidden';
+const settings = document.querySelector('#settings');
+settings.textContent = 'Show Settings';
+settings.addEventListener('click', function (e) {
+  if (showSettings === false) {
+    settings.textContent = 'Hide Settings';
+    ui.extraSettings.style.visibility = 'visible';
+    showSettings = true;
+  }
+  else if (showSettings === true) {
+    settings.textContent = 'Show Settings';
+    ui.extraSettings.style.visibility = 'hidden';
+    showSettings = false;
+  }
+})
+
+const inputName = document.querySelector('#input-name');
+const nameForm = document.querySelector('#name-form');
+// Change name button
+const changeName = document.querySelector('#change-name');
+// nameForm.addEventListener('submit', function (e) {
+//   event.preventDefault();
+//   const freshValue = inputName.value;
+//   state.playerName = freshValue;
+// })
+
+changeName.addEventListener('click', function (e) {
+  event.preventDefault();
+  state.playerName = inputName.value; 
+  render();
+});
+
+
 const heading = document.querySelector('#heading');
 let customHeading = '';
 
 function render() {
   // Top Bar
   if (state.mainButtonName === 'Start Game') {
-    heading.textContent = `Rock Paper Scissors`;
+    heading.textContent = `ROCK PAPER SCISSORS`;
+    ui.middleImg.style.visibility = 'hidden';
   }
   else if (state.mainButtonName === 'Lock In') {
     heading.textContent = `Game: Round ${state.round}`;
+    ui.middleImg.style.visibility = 'hidden';
   }
   else if (state.mainButtonName === 'Next Round') {
     heading.textContent = customHeading;
+    ui.middleImg.style.visibility = 'hidden';
   }
   else if (state.mainButtonName === 'Restart') {
     heading.textContent = customHeading;
+    ui.middleImg.style.visibility = 'hidden';
   }
 
   // Buttons
   buttons.main.textContent = state.mainButtonName;
+  buttons.main.style.backgroundColor = colors.darkPink;
+  buttons.paper.style.backgroundColor = colors.darkPink;
+  buttons.rock.style.backgroundColor = colors.darkPink;
+  buttons.scissors.style.backgroundColor = colors.darkPink;
+
+  if (state.playerSelection === 'rock') buttons.rock.style.backgroundColor = colors.lightPink;
+  if (state.playerSelection === 'paper') buttons.paper.style.backgroundColor = colors.lightPink;
+  if (state.playerSelection === 'scissors') buttons.scissors.style.backgroundColor = colors.lightPink;
+
 
   // Standard UI Content
   ui.playerName.textContent = state.playerName;
@@ -266,14 +318,29 @@ buttons.main.addEventListener('click', function (e) {
       else if (state.roundWinner === 'cpu') {
         customHeading = `${state.cpuName} has Won the Game!!!`;
       }
-      state.roundWinner = null;
 
       // Hide everything when game over, force user to refresh page
       buttons.main.style.visibility = 'hidden';
       buttons.paper.style.visibility = 'hidden';
       buttons.rock.style.visibility = 'hidden';
       buttons.scissors.style.visibility = 'hidden';
-
+      ui.playerScore.style.visibility = 'hidden';
+      ui.cpuScore.style.visibility = 'hidden';
+      ui.playerStatus.style.visibility = 'hidden';
+      ui.cpuStatus.style.visibility = 'hidden';
+      ui.playerPickImg.style.visibility = 'hidden';
+      ui.cpuPickImg.style.visibility = 'hidden';
+      ui.playerPick.style.visibility = 'hidden';
+      ui.cpuPick.style.visibility = 'hidden';
+      ui.topStatus.style.visibility = 'hidden';
+      ui.round.style.visibility = 'hidden';
+      if (state.roundWinner === 'player') {
+        ui.cpuName.style.visibility = 'hidden';
+      }
+      else if (state.roundWinner === 'cpu') {
+        ui.playerName.style.visibility = 'hidden';
+      }
+      ui.middleImg.style.visibility = 'hidden';
     }
     else {
       state.round = state.round + 1;

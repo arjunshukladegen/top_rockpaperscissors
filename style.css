@@ -4,15 +4,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #F5EFE0;
 }
 #header {
   text-align: center;
   width: 80%;
   margin: 4px auto;
   padding: 8px;
-  border-radius: 1px;
+  /* border-radius: 1px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
+  background-color: #2D6A3F;
+  color: #1E1510;
+  border-radius: 1rem;
+  font-size: 1.5rem;
 }
 
 #container {
@@ -22,44 +27,52 @@ body {
   width: 95%;
   margin: 4px auto;
   padding: 8px;
-  border-radius: 1px;
+  /* border-radius: 1px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
+  background-color: #F5EFE0;
+  color: #1E1510;
 }
 
 #game-state {
-  border-radius: 1px;
-  border-color: black;
-  border-style: solid;
+  border-width: 5px;
+  border-radius: 1rem;
+  border-color: #1A4228;
+  border-style: solid; 
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
   text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  background-color: #7A5C3A;
 }
 
 #left-game {
-  border-radius: 1px;
-  border-color: black;
-  border-style: solid;
+  border-right-color: #1A4228;
+  border-right-style: solid;
+  border-right-width: 5px;
   display: flex;
   flex-direction: column;
   width: 20%;
 }
 
 #middle-game {
-  border-radius: 1px;
+  /* border-radius: 1px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
   display: flex;
   flex-direction: column;
   width: 20%;
 }
 
 #right-game {
-  border-radius: 1px;
-  border-color: black;
-  border-style: solid;
+  border-left-color: #1A4228;
+  border-left-style: solid;
+  border-left-width: 5px;
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -67,18 +80,18 @@ body {
 
 #computer-pick {
   width: 20%;
-  border-radius: 1px;
+  /* border-radius: 1px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
   display: flex;
   flex-direction: column;
 }
 
 #human-pick {
   width: 20%;
-  border-radius: 1px;
+  /* border-radius: 1px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
   display: flex;
   flex-direction: column;
 }
@@ -88,10 +101,10 @@ body {
 }
 
 .profile-image img {
-  width: 100%;
+  width: 80%;
   height: auto;
-  border-radius: 1px;
-  border-color:#444;
+  border-radius: 1rem;
+  border-color:#F04D96;
   border-style: solid;
 }
 
@@ -100,12 +113,14 @@ body {
 }
 
 .pick-image img {
-  width: 100%;
+  width: 80%;
   height: auto;
   /* border-radius: 1px;
   border-color:blue;
   border-style: solid; */
-  border-bottom: 4px solid transparent;
+  border-bottom: 3px solid transparent;
+  /* border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem; */
 
 }
 
@@ -115,15 +130,14 @@ body {
   justify-content:space-evenly;
   margin-top: 0.5rem;
   border-radius: 1px;
-  border-color: black;
-  border-style: solid;
+  background-color: #A37D52;
   width: 95%;
 }
 
 .game-button {
   margin: 1rem;
-  color: #333333;
-  background-color:aquamarine;
+  color: #F5EFE0;
+  background-color:#F04D96;
   font-size: 16px;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -137,3 +151,26 @@ button:active {
   background-color: #333333;
 }
 
+#settings-container {
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#settings {
+  width: 16rem;
+}
+
+#extra-settings {
+  
+  text-align: center;
+}
+
+.settings-item {
+  margin-top: 1rem;
+}

@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="header">
-    <h1 id="heading">Rock Paper Scissors</h1>
+    <h1 id="heading">ROCK PAPER SCISSORS</h1>
   </div>
   
   <div id="container">
@@ -42,7 +42,7 @@
       <div id="middle-game">
         <p id="waiting-message">Waiting for players...</p>
         <div class="pick-image">
-          <img src="img/eye.png">
+          <img id="middle-image" src="img/eye.png">
         </div>
         <p id="middle-score">Round 0</p>
       </div>
@@ -65,6 +65,18 @@
 
     </div>
   </div>
+  
+  <div id="settings-container">
+    <button class="settings-item" id="settings"></button>
+    <div id="extra-settings">
+      <!-- <p>Additional Settings</p> -->
+      <form class="settings-item" id="name-form">
+        <input id="input-name" type="text" name="name" placeholder="Your name">
+        <button type="submit" id="change-name">Change Name</button>
+      </form>
+    </div>
+  </div>
+  
 
 </body>
 </html>
